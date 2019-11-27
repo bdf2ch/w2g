@@ -1,0 +1,2 @@
+<w2g-carousel [media]="media" [interactive]="carouselInteractive" [ngClass]="{'has-sidebar': hasSidebar}" (onCallback)="onPress($event)"></w2g-carousel>
+<w2g-notifications [notifications]="notifications" (onExtended)="onNotificationsExtended($event)" *ngIf="notifications.length > 0"></w2g-notifications>

@@ -1,0 +1,39 @@
+
+<div class="detailsPopup" [ngClass]="{'disabled': disabled_tf, 'full-size': isFullSize}" *ngIf="showInfo && point && !timelinePoint" [ngStyle]="{'top': popCss[0], 'left': popCss[1], 'width': popCss[2], 'height':popCss[3]}">
+  <div class="table_heading">
+    <span>{{point.name}}<span (click)="hideInfo()">
+          <i class="material-icons" style="float: right; font-size: 36px; position: relative;">close</i></span>
+    </span>
+  </div>
+  <div class="table_content">
+    <ng-container >
+      <div class="Einfo_1 EinfoDiv">
+        <div class="image-container">
+          <img [src]="tourImage">
+        </div>
+      </div>
+
+    </ng-container>
+    <div class="Einfo_3 EinfoDiv">
+      <div
+        class="content"
+        [innerHTML]="html"
+        *ngIf="html">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs" *ngIf="(
+  tour &&
+  point &&
+  point.timelines.length > 0
+)" [ngClass]="{'collapsed': !point && point.timelines.length == 0}">
+  <div class="tab" *ngFor="let type of timelineTypes" [ngClass]="{'active': timeline && timeline.type == type.value, 'disabled': !point || point.timelineTypes.indexOf(type.value) == -1}" (click)="setTimeline(type)">{{ timeline ? timeline.typeLabel : '' }}</div>
+</div>
+
+
+<div class="timeline" [ngClass]="{'collapsed': !point || point.timelines.length == 0}">
+  <!--<mat-spinner [ngClass]="spinnerColor"></mat-spinner>-->
+  <w2g-timeline [data]="timeline.pointData" [options]="timelineOptions" (onCallback)="setTimelinePoint($event)" *ngIf="timeline"></w2g-timeline>
+</div>

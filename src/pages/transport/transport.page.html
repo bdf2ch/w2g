@@ -1,0 +1,281 @@
+
+    <div class="departure_info"  [ngStyle]="{'top': departureCss[0], 'left': departureCss[1], 'width': departureCss[2]}" [ngClass]="{'disabled': disabled_tf, 'full-size': isFullSize}" *ngIf="departurePopup">
+        <div class="table_heading" *ngIf="departurespopup">
+            <span>Departures from {{stopName}}</span>
+
+            <span class="category" [style.color]="themeColor.lightHex" *ngIf="!page">Bus Stop</span>
+            <span class="category" [style.color]="themeColor.lightHex" *ngIf="page && page.includes('rail')">Train Station</span>
+
+            <span (click)="closeDepartures()">
+                <i class="material-icons" style="float: right;font-size: 40px;">close</i>
+            </span>
+            <span (click)="closestopsList()" *ngIf="!tabbletoggle">
+                <i class="material-icons" style="float: right;font-size: 40px;">arrow_back</i>
+            </span>
+        </div>
+        <div *ngIf="errorMessage" class="errorMsg">{{errM}}</div>
+        <div class="spinner" *ngIf="spinnerControl">
+            <mat-spinner [ngClass]="spinnerColor" style="margin: 0 auto;"></mat-spinner>
+        </div>
+        <div class="table_div" *ngIf="!errorMessage && !spinnerControl">
+            <table style="width:100%; text-align: left;" *ngIf="tabbletoggle" cellspacing="0" cellpadding="0">
+                <tr style="background-color: rgb(0,0,0)">
+                    <th style="width: 10%;" *ngIf="!page">Service</th>
+                    <th style="width: 10%;" *ngIf="page && page.includes('rail')">Platform</th>
+                    <th>Destination</th>
+                    <th>Time</th>
+                    <!--<th>Live</th>-->
+                    <th>Info</th>
+                </tr>
+                <tr *ngFor="let i of departures">
+                    <td>{{i.line}}</td>
+                    <td>{{i.destination}}</td>
+                    <td *ngIf="!page">{{timediff(i.time)}}</td>
+                    <td *ngIf="page && page.includes('rail')">{{i.time}}</td>
+                    <!--<td>
+                      <mat-icon *ngIf="i.live" class="rss_icon">rss_feed</mat-icon>
+                    </td>-->
+                    <td (click)="DeparturesInfo(i)"> <img style="width: 35px;" [src]="'assets/vectors/menu/info.svg'"> </td>
+                </tr>
+
+            </table>
+
+            <table style="width:100%" *ngIf="!tabbletoggle" cellspacing="0" cellpadding="0" class="table2">
+
+                <tr *ngFor="let i of stopsOfBus; let last = last">
+                    <td style="text-align: left;">{{i.stop_name}}</td>
+                    <td>{{i.time}}</td>
+                    <td style="width: 15%;height: 40px;" class="tableCssLine" [ngClass]="{ last: last }">
+                        <div class="css_span" *ngIf="!last">I</div>
+                        <div class="tdBoxline" style="top: -1px;" *ngIf="last">.</div>
+                        <div class="tdBoxline" *ngIf="!last">.</div>
+                    </td>
+                </tr>
+
+                <tr *ngFor="let i of stopsOfTrain; let last = last">
+                  <td style="text-align: left;">{{i.station_name}}</td>
+                  <td>{{i.time}}</td>
+                  <td style="width: 15%;height: 40px;" class="tableCssLine" [ngClass]="{ last: last }">
+                    <div class="css_span" *ngIf="!last">I</div>
+                    <div class="tdBoxline" style="top: -1px;" *ngIf="last">.</div>
+                    <div class="tdBoxline" *ngIf="!last">.</div>
+                  </td>
+                </tr>
+
+            </table>
+
+            <div>
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="planner_div" *ngIf="plannerPopup" [ngStyle]="{'top': plannerCss[0], 'left': plannerCss[1], 'width': plannerCss[2], 'height': plannerCss[3]}" [ngClass]="{'disabled': disabled_tf, 'full-size': isFullSize}" >
+        <div>
+            <div class="table_heading" [ngClass]="{'extended': plannerWindow}">{{journeyPlannerHeading}}
+                <span (click)="closeplanner()">
+                    <span *ngIf="!disabled_tf">
+                        <mat-icon [svgIcon]="'up-arrow-svg'" style="float: right; color: #fff;" *ngIf="plannerWindow"></mat-icon>
+                        <mat-icon [svgIcon]="'down-arrow-svg'" style="float: right; color: #fff;" *ngIf="!plannerWindow"></mat-icon>
+                    </span>
+                    <span *ngIf="disabled_tf">
+                        <mat-icon [svgIcon]="'up-arrow-svg'" style="float: right; color: #fff;" *ngIf="!plannerWindow"></mat-icon>
+                        <mat-icon [svgIcon]="'down-arrow-svg'" style="float: right; color: #fff;" *ngIf="plannerWindow"></mat-icon>
+                    </span>
+
+            </span>
+            </div>
+            <div>
+                <div class="spinner1" *ngIf="spinnerControl1">
+                    <mat-spinner [ngClass]="spinnerColor" style="margin: 0 auto;"></mat-spinner>
+                </div>
+                <div *ngIf="!showingresults">
+                    <mat-tab-group [ngClass]="{'flex' : selectedIndex == 0}" (selectedTabChange)="onLinkClick($event)" [(selectedIndex)]="selectedIndex">
+                        <mat-tab label="Popular Destinations">
+                            <div *ngFor="let i of popular_locations" class="location_div" (click)="fromPopularLocation(i)">
+                              <div class="name">{{i.name}}</div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Plan Journey" >
+
+                            <div class="J_input_div">
+                            <span class="J_input_left">
+                                From
+                            </span>
+                                <span>
+                                <input class="J_input"   placeholder="Your location" readonly #hackinput >
+                            </span>
+                                <span class="J_input_right">
+                                <i class="material-icons"
+                                   style="font-size: 30px;   position: relative; color: rgba(0,0,0,0);  left: -50px;">gps_fixed</i>
+                            </span>
+                            </div>
+                            <div class="J_input_div" style="margin-top: -20px;">
+                            <span class="J_input_left">
+                                To
+                            </span>
+                                <span>
+                                <mat-form-field >
+                                    <input class="J_input Jinput" matInput placeholder="Destination"  style="background-color: white; width: 100%;height:60px;"
+                                           [matAutocomplete]="auto" [(ngModel)]="JourneyTo" #JourneyToinput id="Jinput" >
+                                    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onResultSelected($event)" >
+                                        <mat-option *ngFor="let i of filteredLocation" [value]="i">
+                                            {{ i.name }}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </mat-form-field>
+
+                                    <!--<input placeholder="Journey Destination" class="J_input"  matInput [matAutocomplete]="auto" [formControl]="JourneyTo">-->
+                            </span>
+                                <span class="J_input_right">
+                                <i class="material-icons" *ngIf="!newsearchBool" style="font-size: 30px;   position: relative; color: black;   left: -50px;" (click)="get_Loc_from_map()">location_on</i>
+                                <i class="material-icons"  *ngIf="newsearchBool" style="font-size: 30px;   position: relative; color: black;   left: -50px;" (click)="clear_search_fornew()">close</i>
+                            </span>
+                            </div>
+                            <div class="J_input_div">
+                            <span class="J_input_left">
+                                Start
+                            </span>
+                                <span>
+                                <input atp-time-picker [(ngModel)]="startTime" class="J_input j_input_time" arrowStyle="{'background': 'rgba(1,130,169,0.8)', 'color': 'white'}" theme="dark" *ngIf="startTime">
+                          </span>
+                                <span class="J_input_right">
+                                <i class="material-icons"
+                                   style="font-size: 30px;   position: relative; color: black;   left: -50px;">access_time</i>
+                            </span>
+                            </div>
+
+                            <mat-radio-group [(ngModel)]="journeyParam">
+                                <mat-radio-button value="0" class="mat_radio_buttons">Fastest Route</mat-radio-button>
+                                <mat-radio-button value="1" class="mat_radio_buttons">Fewest Changes</mat-radio-button>
+                                <mat-radio-button value="2" class="mat_radio_buttons">Least Walking</mat-radio-button>
+                            </mat-radio-group>
+
+
+
+
+                            <div style=" text-align: center; " >
+                                <div class="table_heading search" (click)="JourneySearchFunction()" style="margin-bottom: 0;">
+                                <span >
+                                        <i class="material-icons" style="font-size: 30px;    position: relative;  top: 4px;    color: white;">search</i>
+                                    </span>
+                                    Search
+
+                                </div>
+
+                            </div>
+
+
+                        </mat-tab>
+                    </mat-tab-group>
+                </div>
+
+                <div *ngIf="showingresults">
+                    <!--<div style="background-color: black;padding: 5px 10px 5px;position: absolute;right: 7px;border-radius: 4px;" (click)="backTosearch()">Back</div>-->
+                    <mat-tab-group (selectedTabChange)="onJourneyClick($event)" class="route_results">
+
+                        <mat-tab label="Tab {{tn}}"  *ngFor="let i of journeyresults; let tn = index">
+                            <ng-template mat-tab-label style="font-family: 'Segoe UI Light' !important;">
+                                <div style="padding: 8px;">
+                                    <span *ngIf="i.duration[0] == '00'" style="position: relative; top: -10px;font-size: 22px;">{{i.duration[1]}} mins</span>
+                                    <span *ngIf="i.duration[0] != '00'" style="position: relative; font-size: 22px;"><span style="position: absolute;">{{i.duration[0]}} hrs</span> {{i.duration[1]}} mins</span>
+                                    <div class="vline"></div>
+                                    <div style="display: inline-block;text-align: left; padding-left: 10px;padding-right: 20px;font-size: 20px;">
+                                      <div>Start: <span style="float: right;padding: 0px 5px 0px 5px;">{{i.departure_time}}</span></div>
+                                      <div>Finish: <span style="float: right;padding: 0px 5px 0px 5px;">{{i.arrival_time}}</span></div>
+                                    </div>
+
+                                </div>
+                            </ng-template>
+                            <div class="result_list_cont_div">
+                                <div *ngFor="let x of i.route_parts; let n = index; let last = last;" class="J_route_div" (click)="fitboundfunc(i,n)">
+                                    <span class="J_step" >Step {{n+1}}</span>
+                                    <div class="css_span_reslts">
+                                        <div class="res_css_dis_vline" *ngIf="!last">i</div>
+                                        <span class="res_css_dis_dot" style="left: 0px;" *ngIf="last"><mat-icon>radio_button_checked</mat-icon></span>
+                                        <span class="res_css_dis_dot" *ngIf="!last"><mat-icon>radio_button_checked</mat-icon></span>
+                                    </div>
+
+
+
+
+                                    <div  class="res_list_right_div" *ngIf="!last">
+
+                                        <span class="J_mode">
+                                            <mat-icon [svgIcon]="x.icon" class="svg-icon">
+                                            </mat-icon>
+                                        </span>
+                                        <span class="J_duration">{{x.duration[1]}}mins</span>
+                                        <span [innerHTML]="x.info" class="J_info" style="font-size: 16px;"></span>
+                                    </div>
+                                    <div  class="res_list_right_div" style="    left: 32px;    position: relative;" *ngIf="last">
+
+                                        <span class="J_mode">
+                                            <mat-icon [svgIcon]="x.icon" class="svg-icon">
+                                            </mat-icon>
+                                        </span>
+                                        <span class="J_duration">{{x.duration[1]}}mins</span>
+                                        <span [innerHTML]="x.info" class="J_info" style="font-size: 16px;"></span>
+                                    </div>
+                                </div>
+                                <!--<div class="stopsEnd"></div>-->
+
+                            </div>
+
+
+                        </mat-tab>
+
+
+                    </mat-tab-group>
+
+                    <div *ngIf="NoRotuesErr" class="NoRotuesErr">
+                        <div >No Routes found to searched Destination!</div>
+                    </div>
+                    <div>
+                        <div class="table_heading jRes_down_bar"  style="margin-bottom: 0;">
+                            <span (click)="toPopularDestination()"> <mat-icon>location_on</mat-icon>Popular Destinations</span>
+                            <span (click)="toSearch()"><mat-icon>search</mat-icon>New Search</span>
+                            <span (click)="toeditSearch()"><mat-icon>edit</mat-icon>Edit Search</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="keyboard_outer_div" *ngIf="!showingresults" [ngStyle]="{'top': plannerCss[0], 'left': plannerCss[1], 'width': plannerCss[2]}" [ngClass]="{'disabled': disabled_tf, 'full-size': isFullSize}">
+        <div style="padding: 10px;border-radius: 4px;margin: 10px;" *ngIf="showkeyboard">
+            <w2g-keyboard></w2g-keyboard>
+        </div>
+    </div>
+
+    <div class="coming-soon walking" *ngIf="inwalkingpage">
+        <p>Coming Soon</p>
+    </div>
+
+    <div class="coming-soon cycle" *ngIf="incyclepage">
+      <p>Coming Soon</p>
+    </div>
+
+    <div class="navbar" [ngClass]="{'sidebar': hasSidebar}" [style.backgroundColor]="themeColor.hex" *ngIf="showMenu">
+  <div class="menu" [ngClass]="{'disabled': disabled_tf}">
+    <button mat-icon-button [ngClass]="button.className ? 'menu-button ' + button.className : 'menu-button'" [routerLink]="button.url" queryParamsHandling="merge" *ngFor="let button of menuButtons">
+      <mat-icon [svgIcon]="isActive(button) ? button.activeIcon : button.icon"></mat-icon>
+      <div class="label" [ngClass]="{'active': isActive(button)}">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+    </button>
+  </div>
+
+  <!--<div class="close-button-column">
+    <div class="close-button-row">
+      <button mat-icon-button class="close-button" (click)="closeMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>-->
+</div>

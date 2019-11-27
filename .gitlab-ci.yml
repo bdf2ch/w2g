@@ -1,0 +1,38 @@
+image: docker:latest
+
+stages:
+  - build
+  - build-staging
+
+variables:
+  IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME
+  BRANCH_REF: $CI_COMMIT_REF_NAME-$CI_PROJECT_NAME
+  RELEASE_TAG: $CI_REGISTRY_IMAGE:latest
+
+before_script:
+  - docker info
+  - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build:
+  stage: build
+  tags:
+    - shell
+  script:
+    - docker build --build-arg --pull -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
+  only:
+    - master
+    - worcester-uni
+    - birmingham-uni-full
+
+build-staging:
+  stage: build
+  tags:
+  - shell
+  script:
+  - docker build --build-arg CONFIG=staging --build-arg BASE_HREF=/staging/ --pull -t $IMAGE_TAG-staging .
+  - docker push $IMAGE_TAG-staging
+  only:
+  - master
+  - worcester-uni
+  - birmingham-uni-full

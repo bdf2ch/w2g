@@ -1,0 +1,59 @@
+<ng-container *ngIf="showSearch">
+    <div class="search-container" [ngClass]="{'collapsed': collapsedSearch, 'disabled': disabled_tf, 'has-notification': showingNotification}">
+      <div class="search-container-heading" (click)="clickHeader($event)">
+        <div class="search-container-heading-text">Find a Location</div>
+        <span class="spacer"></span>
+        <button id="toggle-search-button" mat-icon-button>
+          <mat-icon [svgIcon]="'down-arrow-svg'" style="float: right; color: #fff;" *ngIf="collapsedSearch"></mat-icon>
+          <mat-icon [svgIcon]="'up-arrow-svg'" style="float: right; color: #fff;" *ngIf="!collapsedSearch"></mat-icon>
+        </button>
+        <button id="close-search-button" mat-icon-button class="close-button" (click)="closeSearch()" *ngIf="hasCloseButton">
+          <mat-icon class="close" [svgIcon]="'close-svg'"></mat-icon>
+        </button>
+      </div>
+      <div class="search-container-body">
+        <mat-tab-group [ngClass]="{'flex' : selectedIndex == 0}" [(selectedIndex)]="selectedIndex">
+          <mat-tab [label]="popularLabel">
+            <div *ngFor="let i of popularLocations" class="popular-location" (click)="resultClickedHandler(i)">
+              <div class="name">{{i.name}}</div>
+            </div>
+          </mat-tab>
+          <mat-tab label="Search">
+            <div class="search_cont" [ngStyle]="{'top': popcss[0], 'left': popcss[1], 'width': popcss[2]}" [ngClass]="{'disabled': disabled_tf}">
+              <div>
+                <div class="input_div">
+                  <input class="keyboard_input" placeholder="Start typing the name of the location..." [(ngModel)]="userInput" (click)="request_search_div()"  (ngModelChange)="inputChangeHandler()" >
+                  <button mat-icon-button class="global-button" (click)="searchFun()" *ngIf="!userInput || userInput.length == 0">
+                    <mat-icon>{{"search"}}</mat-icon>
+                  </button>
+                  <button mat-icon-button class="global-button"  (click)="clearSearch()" *ngIf="userInput && userInput.length > 0">
+                    <mat-icon class="clear">clear</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="directions-options" *ngIf="graphOptions.length > 0">
+              <mat-radio-group [(ngModel)]="graphChoice">
+                <mat-radio-button value="default" class="mat_radio_buttons" *ngFor="let graphOption of graphOptions" [value]="graphOption.value">{{ graphOption.label }}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+
+            <div class="keyboard_outer_div"  [ngStyle]="{'top': popcss[0], 'left': popcss[1], 'width': popcss[2], 'display':close_bol}" [ngClass]="{'disabled': disabled_tf}" *ngIf="selectedIndex === 1">
+              <div style="padding: 10px;border-radius: 4px;margin: 10px;" >
+                <w2g-keyboard></w2g-keyboard>
+              </div>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+
+    <div [ngStyle]="{'max-height': res_height,  'display':close_bol}" class="res_cont" [ngClass]="{'disabled': disabled_tf, 'has-notification': showingNotification}" *ngIf="selectedIndex === 1">
+        <div class="res_div">
+            <p class="result_bullets" *ngFor="let button of searchResults" (click)="resultClickedHandler(button)">{{button.display_name}}
+                <span class="result_more_info" [style.color]="lightThemeColor" *ngIf="button.categories && button.categories.length > 0 && button.categories[0].name">{{button.categories[0].name}}</span>
+            </p>
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,71 @@
+<div class="mat-spinner-container">
+  <mat-spinner [ngClass]="spinnerColor" *ngIf="preloading || loading"></mat-spinner>
+</div>
+
+<!--<div class="map-buttons" *ngIf="method !== ''">
+  <button mat-button class="map-button" [ngClass]="{'hidden': preloading}" [style.backgroundColor]="button.backgroundColor" (click)="onMapButtonClick(button.id)" *ngFor="let button of mapButtonstoprint" >
+    <div>
+      <img  [src]="button.currentIconUrl || button.iconUrl">
+    </div>
+    <div class="button_name">{{button.label}}</div>
+
+  </button>
+</div>-->
+
+
+<div class="detailsPopup" [ngClass]="{'disabled': disabled_tf, 'full-size': isFullSize, 'shuttle-bus': Einfo.isShuttleBus}" *ngIf="showingInfo && Einfo" [ngStyle]="{'top': popCss[0], 'left': popCss[1], 'width': popCss[2], 'height':popCss[3]}">
+  <div class="table_heading">
+    <span>{{Einfo.name}}<span (click)="closeMoreInfo()">
+          <i class="material-icons" style="float: right; font-size: 36px; position: relative;">close</i></span>
+    </span>
+    <span class="category" [style.color]="lightColor" *ngIf="Einfo.categories && Einfo.categories.length > 0">{{Einfo.categories[0].name}}</span>
+    <span class="category" [style.color]="lightColor" *ngIf="Einfo.category">{{Einfo.category.name}}</span>
+  </div>
+  <div class="table_content">
+    <ng-container *ngIf="Einfo.images && Einfo.images.length > 0">
+      <div class="Einfo_1 EinfoDiv" [ngClass]="{'extended' : !(Einfo.phone || Einfo.contact_email || Einfo.other_contact || Einfo.opening_times) }">
+        <div class="image-container" *ngIf="Einfo.images && Einfo.images.length > 0">
+          <img [src]="Einfo.images[0].url">
+        </div>
+      </div>
+      <div class="Einfo_2 EinfoDiv" *ngIf="Einfo.phone || Einfo.contact_email || Einfo.other_contact || Einfo.opening_times">
+        <div *ngIf="Einfo.phone">T: {{Einfo.phone}}</div>
+        <div *ngIf="Einfo.contact_email">E: {{Einfo.contact_email}}</div>
+        <div *ngIf="Einfo.url">W: {{Einfo.url}}</div>
+        <div *ngIf="Einfo.other_contact">Other: {{Einfo.other_contact}}</div>
+
+        <div style="margin-top: 20px;"></div>
+
+        <div class="subheader" *ngIf="Einfo.opening_times">Opening Hours:</div>
+        <div [innerHTML]="Einfo.opening_times"></div>
+      </div>
+      <!-- <div class="css_line"></div> -->
+    </ng-container>
+    <div class="Einfo_3 EinfoDiv">
+      <div
+        class="content"
+        [innerHTML]="Einfo.content"
+        *ngIf='Einfo.content'>
+      </div>
+      <ng-container
+        *ngFor="let metadata of Einfo.metadata">
+        <div class="header">
+          {{ metadata.header }}
+        </div>
+        <div
+          class="subcontent"
+          [innerHTML]="metadata.content">
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<div #map id="map" [ngClass]="{'hidden': preloading, 'has-header': hasHeader}" ></div>
+<w2g-floorplan [ngClass]="{'has-sidebar': hasSidebar}" (floorEvent)="changeFloor($event)" (removeFloorEvent)="removeFloor($event)" *ngIf="currentFloor"></w2g-floorplan>
+
+<template #popup></template>
+
+<w2g-qr [url]="qrShareUrl" (onClose)="unsetQrShareUrl()" *ngIf="qrShareUrl"></w2g-qr>
+
+<!--<span class="pulse"></span>-->

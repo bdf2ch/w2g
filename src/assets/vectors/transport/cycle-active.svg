@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 21.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+<polyline fill="none" stroke="rgba(0, 0, 0, 0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	25.738,61.49 39.387,32.087 38.278,24.9 45.598,22.903 "/>
+<polyline fill="none" stroke="rgba(0, 0, 0, 0.4)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="
+	36.665,37.959 60.185,41.223 74.665,61.49 51.799,57.384 50.829,57.205 34.694,42.2 "/>
+<line fill="none" stroke="rgba(0, 0, 0, 0.4)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="64.041" y1="33.854" x2="51.799" y2="57.079"/>
+<path fill="rgba(0, 0, 0, 0.4)" stroke="rgba(0, 0, 0, 0.4)" stroke-width="1.368" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+	M58.971,31.497c0.289-0.05,0.643,0.009,0.868-0.001c1.818-0.081,3.637-0.046,5.448-0.217c0.838-0.08,1.697-0.176,2.535-0.04
+	c0.658,0.107,1.557,0.316,1.332,1.22c-0.144,0.574-0.372,1.288-0.869,1.651c-0.691,0.509-1.831,0.345-2.627,0.248
+	c-0.715-0.087-1.418-0.258-2.104-0.485c-0.494-0.164-1-0.473-1.503-0.58c-0.619-0.129-1.253-0.156-1.874-0.257
+	c-0.728-0.12-1.839-0.167-1.663-1.143C58.56,31.638,58.741,31.535,58.971,31.497z"/>
+<path fill="rgba(0, 0, 0, 0.4)" d="M90,61.49c0,8.62-7.045,15.607-15.736,15.607c-8.694,0-15.74-6.988-15.74-15.607
+	c0-8.62,7.046-15.609,15.74-15.609C82.955,45.88,90,52.87,90,61.49z M74.264,48.482c-7.244,0-13.117,5.825-13.117,13.008
+	c0,7.183,5.873,13.006,13.117,13.006c7.24,0,13.113-5.823,13.113-13.006C87.377,54.307,81.504,48.482,74.264,48.482z"/>
+<ellipse fill="none" stroke="rgba(0, 0, 0, 0.4)" stroke-miterlimit="10" cx="74.263" cy="61.489" rx="3.278" ry="3.251"/>
+<path fill="rgba(0, 0, 0, 0.4)" d="M41.476,61.49c0,8.62-7.046,15.607-15.737,15.607C17.045,77.097,10,70.109,10,61.49
+	c0-8.62,7.045-15.609,15.738-15.609C34.43,45.88,41.476,52.87,41.476,61.49z M25.738,48.482c-7.244,0-13.116,5.825-13.116,13.008
+	c0,7.183,5.872,13.006,13.116,13.006c7.242,0,13.114-5.823,13.114-13.006C38.852,54.307,32.98,48.482,25.738,48.482z"/>
+<ellipse fill="none" stroke="rgba(0, 0, 0, 0.4)" stroke-miterlimit="10" cx="25.738" cy="61.489" rx="3.279" ry="3.251"/>
+</svg>

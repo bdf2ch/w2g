@@ -1,0 +1,36 @@
+$black: #030303;
+$tintedBlack: #060606;
+$charcoal: #2e2e2e;
+$glassWhite: rgba(255, 255, 255, 0.8);
+
+w2g-header {
+  display: flex;
+  flex-direction: row;
+  height: 290px;
+  width: 100%;
+}
+
+.coreContent{
+  width: 100%;
+  height: calc(100% - 500px);
+  //background-color: aqua;
+  display: flex;
+
+  > div{
+    position: relative;
+    width: calc(100% - 992px);
+    background-color: orange;
+
+    w2g-map{
+      position: unset;
+    }
+
+    w2g-carousel{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+}

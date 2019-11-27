@@ -1,0 +1,226 @@
+$grey: #333;
+$glassWhite: rgba(255, 255, 255, 0.8);
+
+.notifications-list {
+  //pointer-events: auto;
+  overflow: auto;
+  max-height: 1102px;
+
+  .notification {
+    background-color: $glassWhite;
+    display: flex;
+    height: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+
+    .icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 65px;
+      min-width: 52px;
+      height: 100%;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+
+      mat-icon {
+        height: 200px;
+        width: 100%;
+        line-height: 200px;
+        text-align: center;
+        font-size: 52px;
+        color: #fff;
+      }
+
+      mat-icon.svg-icon {
+        margin-left: -4px;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1;
+      margin: 25px 45px;
+      box-sizing: border-box;
+
+      .title {
+        font-size: 30px;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        height: 47px;
+        width: 765px;
+      }
+
+      .message {
+        flex: 1;
+        font-size: 21px;
+        font-weight: 300;
+        overflow: auto;
+        line-height: 24px;
+        max-height: 76px;
+        color: $grey;
+      }
+
+      .footer {
+        display: flex;
+        flex-direction: row;
+        font-size: 20px;
+        color: #838484;
+      }
+    }
+
+    .content.color-2d418a {
+      /deep/ ::-webkit-scrollbar-thumb {
+        background-color: #2d418a !important;
+      }
+    }
+
+    .content.color-c4104b {
+      /deep/ ::-webkit-scrollbar-thumb {
+        background-color: #c4104b !important;
+      }
+    }
+  }
+
+  .notification:not(:last-child) {
+    margin-bottom: 20px;
+  }
+
+  .notification.custom {
+    height: 222px;
+  }
+
+  .notification.truncated {
+    height: 110px;
+
+    mat-icon {
+      height: 110px !important;
+      line-height: 110px !important;
+      font-size: 46px !important;
+    }
+
+    .content {
+      margin: 5px 10px;
+
+      .title-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        min-height: 60px;
+
+        .title {
+          line-height: 30px;
+          height: auto;
+          min-height: 34px;
+          white-space: normal;
+          text-overflow: clip;
+          overflow: hidden;
+        }
+      }
+
+      .message {
+        font-size: 26px;
+        font-weight: 300;
+        overflow: auto;
+        line-height: 38px;
+        height: 50px;
+      }
+    }
+  }
+
+  .notification:not(.truncated) {
+    pointer-events: auto;
+  }
+}
+
+.extend-toggle {
+  background-color: $glassWhite;
+  margin-top: 20px;
+  width: 115px;
+  height: 40px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  pointer-events: auto;
+  font-size: 20px;
+  line-height: 1.8;
+  padding: 10px;
+
+  /deep/ * {
+    pointer-events: none;
+  }
+
+  mat-icon {
+    font-size: 48px;
+    line-height: 40px;
+    font-weight: 300;
+    height: 40px;
+    width: 100%;
+    pointer-events: none;
+  }
+}
+
+.map-buttons {
+  pointer-events: auto;
+
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  bottom: 2px;
+  height: 60px;
+  width: 60px;
+  left: 10px;
+  z-index: 9 ;
+
+  .map-button {
+    min-width: unset;
+    height: 60px;
+    width: 60px;
+    padding: 0;
+    z-index: 2;
+    border-radius: 5px;
+    transition: opacity .6s;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}
+
+@keyframes highlight {
+  0% {
+    width: 180px;
+  }
+  40% {
+    width: 210px;
+  }
+  100% {
+    width: 180px;
+  }
+}
+
+.extend-toggle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  animation: highlight 0.5s;
+  animation-iteration-count: 2;
+  animation-delay: 2s;
+  width: 180px;
+
+  mat-icon {
+    color: $grey;
+    width: 40px;
+  }
+
+  .label {
+    color: $grey;
+    width: auto;
+  }
+}

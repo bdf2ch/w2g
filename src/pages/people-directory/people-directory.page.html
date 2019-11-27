@@ -1,0 +1,69 @@
+<main>
+  <aside>
+    <div class="people-directory">
+      <div>
+        <mat-icon routerLink="/">arrow_left</mat-icon>
+        <mat-icon>people</mat-icon>
+        <span>people directory</span>
+      </div>
+      <mat-form-field class="people-search example-full-width">
+        <input matInput placeholder="Search for a person e.g Dr S Buxton" autocomplete="no" [(ngModel)]="input" (ngModelChange)="inputChange()">
+      </mat-form-field>
+      <div>
+        <mat-accordion class="directories" *ngIf="departments">
+          <mat-expansion-panel *ngFor="let departmentKey of collectObjectKeys(departments)" [ngStyle]="{'background-color': departments[departmentKey].colour}">
+            <mat-expansion-panel-header
+              [collapsedHeight]="expansionPanelHeight"
+              [expandedHeight]="expansionPanelHeight">
+              <mat-panel-title>
+                {{departmentKey}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="people-details">
+              <div *ngFor="let person of departments[departmentKey].people">
+                <a [routerLink]="person._id">
+                  <img [src]="mockImage" [alt]="person.name">
+                  <div>
+                    <div>{{person.title}} {{person.firstName}} {{person.lastName}}</div>
+                    <div>{{person.email}}</div>
+                    <div>{{person.phone}}</div>
+                    <div>{{person.room}}</div>
+                  </div>
+                </a>
+                <div class="divider"></div>
+              </div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+  </aside>
+
+  <article>
+    <div class="main_info">
+      <w2g-map class="map"></w2g-map>
+      <div class="info_name">
+        Floorplans<br>
+        to appear here<br>
+        <br>
+        Will also have a<br>
+        ‘You are Here’<br>
+        Marker
+      </div>
+
+      <ul class="right_menu green">
+        <li class="active"><span>G</span></li>
+        <li><span>1st</span></li>
+        <li><span>2nd</span></li>
+        <li><span>3rd</span></li>
+        <li class="active" routerLink="/"><span><img src="/assets/images/icon/home.png" /></span></li>
+      </ul>
+
+      <div class="keyboard">
+        <w2g-keyboard></w2g-keyboard>
+      </div>
+    </div>
+
+  </article>
+
+</main>

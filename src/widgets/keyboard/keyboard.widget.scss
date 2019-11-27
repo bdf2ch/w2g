@@ -1,0 +1,38 @@
+.keyboard {
+  .keyboard_input {
+    width: 70%;
+    height: 50px;
+    border-radius: 4px;
+    background-color: rgb(175, 175, 175);
+    font-size: 20px;
+    border-color: #afafaf;
+    border: none;
+    color: #6a6a6a;
+    padding-left: 10px;
+
+  }
+
+  .del_btn {
+    padding: 3px !important;
+    margin: 0 !important;
+    top: 3px;
+    position: relative;
+  }
+
+  .key_row {
+    text-align: center;
+  }
+
+  .keyboard_btn {
+    font-family: "Segoe UI Light" !important;
+    color: white;
+    display: inline-block;
+    background-color: rgba(0,0,0,0.75);
+    margin: 3px;
+    padding: 8px;
+    font-size: 22px;
+    width: 45px;
+    border-radius: 4px;
+    box-shadow: 2px 2px 3px 0 rgba(82,82,82,0.7);
+  }
+}

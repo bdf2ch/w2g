@@ -1,0 +1,85 @@
+<div class="nearest-legend-container" *ngIf="!page && ready && gradientLabels && nearestLocations && nearestLocations.length > 0">
+  <div class="nearest-gradient" [style.background]="nearestGradient">
+  </div>
+  <div class="nearest-labels">
+    <div class="label-container" *ngFor="let label of gradientLabels">
+      <div class="label">{{ label }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="nearest-legend-container" *ngIf="!page && ready && !gradientLabels && legendIconUrls && nearestLocations && nearestLocations.length > 0">
+  <div class="nearest-icons" *ngFor="let iconUrl of legendIconUrls">
+    <img [src]="iconUrl"/>
+  </div>
+</div>
+
+<div class="parent-bar" [style.backgroundColor]="themeColor.darkHex" *ngIf="barTitle && ready">{{ barTitle }}</div>
+<div class="navbar" [ngClass]="{'sidebar': hasSidebar, 'subsidebar': hasSubSidebar}" [style.backgroundColor]="themeColor.hex" *ngIf="showMenu">
+  <div class="menu" [ngClass]="{'disabled': disabled}">
+    <div *ngFor="let button of menuButtons; let n = index;" class="menuSpan">
+      <button mat-icon-button [ngClass]="button.className ? 'menu-button ' + button.className : 'menu-button'"
+              [routerLink]="button.url" queryParamsHandling="merge"
+              *ngIf="!showbackbtn" >
+        <mat-icon [svgIcon]="isActive(button) ? button.activeIcon : button.icon" *ngIf="button.icon"></mat-icon>
+        <mat-icon *ngIf="button.iconUrl">
+          <img [src]="button.iconUrl"/>
+        </mat-icon>
+        <div class="label" [ngClass]="{'active': isActive(button), 'generic': genericNavbar}">
+          <div class="label-text-container">
+            <div class="label-text">{{ button.label }}</div>
+          </div>
+        </div>
+      </button>
+    </div>
+
+    <div class="nearest-key-container" [style.backgroundColor]="themeColor.hex" *ngIf="ready && !page">
+      <div class="mat-spinner-container" *ngIf="nearestLoading">
+        <mat-spinner class="white"></mat-spinner>
+      </div>
+
+      <ng-container *ngIf="!nearestLoading">
+        <div class="nearest-key">
+          <div class="nearest-key-column" *ngFor="let index of nearestCategoryIndices">
+            <div class="nearest-key-row" (click)="filterNearest(nearestCategories[index])" [ngClass]="{'active': nearestActiveCategoryId == nearestCategories[index].id}">
+              <div class="nearest-key-icon">
+                <img [src]="nearestCategories[index].icon"/>
+              </div>
+              <div class="nearest-key-label-container">
+                <div class="nearest-key-label">{{ nearestCategories[index].name }}</div>
+              </div>
+            </div>
+            <div class="nearest-key-row" (click)="filterNearest(nearestCategories[index + 1])" [ngClass]="{'active': nearestActiveCategoryId == nearestCategories[index + 1].id}" *ngIf="nearestCategories[index + 1]">
+              <div class="nearest-key-icon">
+                <img [src]="nearestCategories[index + 1].icon"/>
+              </div>
+              <div class="nearest-key-label-container">
+                <div class="nearest-key-label">{{ nearestCategories[index + 1].name }}</div>
+              </div>
+            </div>
+            <div class="nearest-key-row" *ngIf="!nearestCategories[index + 1]"></div>
+          </div>
+        </div>
+
+        <button mat-icon-button [routerLink]="'/around-me/remote'" queryParamsHandling="merge" class="backbtn">
+          <mat-icon>arrow_back_ios</mat-icon>
+        </button>
+      </ng-container>
+    </div>
+
+    <div>
+      <button mat-icon-button [routerLink]=" '/around-me/' + button.id" queryParamsHandling="merge"
+              *ngFor="let button of newmenulist;" [ngClass]="'menu-button'">
+        <img [src]="button.icon" class="btnimg">
+        <div class="label">
+          <div class="label-text-container">
+            <div class="label-text">{{ button.name }}</div>
+          </div>
+        </div>
+      </button>
+    </div>
+    <button mat-icon-button (click)="backFun()" class="backbtn" *ngIf="showbackbtn">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+  </div>
+</div>

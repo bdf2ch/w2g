@@ -1,0 +1,79 @@
+<main>
+  <aside>
+    <div class="people-info" *ngIf="person" [ngStyle]="{'background-color': colour}">
+      <div class="details">
+        <a routerLink="/people-directory">
+          <mat-icon>arrow_left</mat-icon>
+        </a>
+        <div>
+          <img [src]="mockImage" [alt]="person.firstName">
+          <div>
+            <div>{{person.title}} {{person.firstName}} {{person.lastName}}</div>
+            <div>{{person.email}}</div>
+            <div>{{person.phone}}</div>
+            <div>{{person.room}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="info">
+        <div>
+          <span class="expertiseLabel">
+            {{person.expertiseLabel}}
+          </span>
+          <div class="expertise">
+            <div *ngFor="let expertise of person.expertise">
+              - {{expertise}}
+            </div>
+          </div>
+        </div>
+        <p>{{person.about}}</p>
+        <div *ngIf="false">
+          <div class="header">
+            <span>Office Hours</span>
+          </div>
+          <div class="officeHours">
+            <div *ngFor="let officeHour of officeHours">
+              <div class="day">{{officeHour.day}}</div>
+              <div class="time" *ngIf="!officeHour.closed">
+                <div>{{officeHour.startTime}}</div>
+                <span>-</span>
+                <div>{{officeHour.endTime}}</div>
+              </div>
+              <div class="closed" *ngIf="officeHour.closed">
+                <div>Closed</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <article>
+    <div class="main_info">
+      <w2g-map class="map"></w2g-map>
+      <div class="info_name">
+        Floorplans<br>
+        to appear here<br>
+        <br>
+        Will also have a<br>
+        ‘You are Here’<br>
+        Marker
+      </div>
+
+      <ul class="right_menu green">
+        <li class="active"><span>G</span></li>
+        <li><span>1st</span></li>
+        <li><span>2nd</span></li>
+        <li><span>3rd</span></li>
+        <li class="active"><span><img src="/assets/images/icon/home.png" /></span></li>
+      </ul>
+
+      <div class="keyboard">
+        <w2g-keyboard></w2g-keyboard>
+      </div>
+    </div>
+
+  </article>
+
+</main>

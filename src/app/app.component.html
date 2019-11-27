@@ -1,0 +1,53 @@
+<div class="mat-spinner-container" *ngIf="!isAuth">
+  <mat-spinner [ngClass]="spinnerColor"></mat-spinner>
+  <div class="spinner-status-message" [innerHTML]="spinnerStatusMessage"></div>
+</div>
+
+<ng-container *ngIf="isAuth">
+	<header>
+		<div class="inside">
+			<w2g-weather [showDate]="true"></w2g-weather>
+			<div id="logo">
+				<a href="/"><img src="../assets/images/logo.png"></a>
+			</div>
+		</div>
+	</header>
+	<router-outlet></router-outlet>
+
+	<footer>
+		<div class="text">
+			<strong>BBC NEWS:</strong>
+			Holiday makers and other road users along the A30 in Cornwall have been helped on their way...
+		</div>
+		<div>
+			<a class="lang" href="#"><img src="../assets/images/en.png"> English</a>
+			<a class="lang" href="#"><img src="../assets/images/cy.png"> Cymraeg</a>
+		</div>
+	</footer>
+  <!--<div class="coreContent">
+    <router-outlet></router-outlet>
+    <div>
+      <w2g-map
+        [hasHeader]="showHeader"
+        [hasSidebar]="menuSidebar"
+        [hasSubSidebar]="showSubSidebar"
+        [isFullSize]="isFullSize"
+        [ngClass]="{
+        'has-header': showHeader,
+        'has-sidebar': menuSidebar,
+        'has-subsidebar': showSubSidebar,
+        'has-footer': showFooter
+        }">
+      </w2g-map>
+      <w2g-carousel
+        *ngIf="isHomeScreen()"
+        [media]="media"
+        [interactive]="carouselInteractive"
+        [ngClass]="{
+        'has-sidebar': hasSidebar
+        }">
+      </w2g-carousel>
+    </div>
+  </div>
+  <w2g-footer [hasSidebar]="menuSidebar"></w2g-footer>-->
+</ng-container>

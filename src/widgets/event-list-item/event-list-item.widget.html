@@ -1,0 +1,24 @@
+<div class="event-list-item" [ngClass]="{'with-divider': showDivider}">
+  <div class="meeting-time">
+    <span>{{meeting.startDate | time}}</span>
+    <span>&mdash;</span>
+    <span>{{meeting.endDate | time}}</span>
+  </div>
+  <div class="meeting-info">
+    <span>{{meeting.displayName}}</span>
+  </div>
+
+<!--
+  <div class="meetingTime">
+    <div>{{meeting.startDate | time}}</div>
+    <div>-</div>
+    <div>{{meeting.endDate | time}}</div>
+  </div>
+  <div class="meetingInfo">
+    <div>{{meeting.displayName}}</div>
+    <div>{{meeting.imageUrl}}</div>
+  </div>
+  -->
+</div>
+<!--<div class="divider" *ngIf="showDivider"></div>-->
+

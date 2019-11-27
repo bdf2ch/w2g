@@ -1,0 +1,38 @@
+<!--<a *ngFor="let homeScreenButton of homeScreenButtons" [routerLink]="homeScreenButton.link">
+  <mat-icon>{{homeScreenButton.icon}}</mat-icon>
+  <span>{{homeScreenButton.label}}</span>
+</a>-->
+
+
+<main class="clearfix">
+	<aside>
+		<ul class="main_menu">
+			<li>
+				<span><img src="/assets/images/icon/icon.png"> View Floorplans</span>
+			</li>
+			<li routerLink="location-searches">
+				<span><img src="/assets/images/icon/icon_2.png"> Location Search</span>
+			</li>
+			<li>
+				<span><img src="/assets/images/icon/icon_3.png"> Directions</span>
+			</li>
+			<li routerLink="people-directory">
+				<span ><img src="/assets/images/icon/icon_4.png">People Directory</span>
+			</li>
+			<li routerLink="todays-meetings">
+				<span><img src="/assets/images/icon/icon_5.png"> Today’s Meetings</span>
+			</li>
+			<li routerLink="meeting-rooms">
+				<span><img src="/assets/images/icon/icon_6.png"> Meeting Rooms</span>
+			</li>
+			<li>
+				<span><img src="/assets/images/icon/icon_7.png"> Help</span>
+			</li>
+		</ul>
+	</aside>
+
+	<article>
+		<!--<w2g-keyboard></w2g-keyboard>-->
+		<img class="main_img" src="/assets/images/main.png">
+	</article>
+</main>

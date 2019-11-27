@@ -1,0 +1,13 @@
+.mat-snack-bar-container {
+  background-color: #232323 !important;
+  margin-bottom: 205px !important;
+  pointer-events: none !important;
+
+  * {
+    pointer-events: auto !important;
+  }
+
+  button {
+    color: #605270 !important;
+  }
+}

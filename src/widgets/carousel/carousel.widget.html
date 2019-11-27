@@ -1,0 +1,30 @@
+<ngx-carousel #theCarousel
+              [inputs]="carousel"
+              [moveToSlide]="currentMediumIndex"
+              (carouselLoad)="carouselLoaded($event)"
+              (onMove)="carouselMoved($event)">
+    <ngx-item NgxCarouselItem *ngFor="let medium of media" (click)="redirectCallback(medium)">
+      <img [src]="medium.url" *ngIf="medium.type == 'image'"
+           [attr.data-resource-id]="medium.id"/>
+      <video *ngIf="medium.type == 'video'" [attr.data-resource-id]="medium.resourceId">
+          <source [src]="medium.url" type="video/mp4"/>
+      </video>
+
+
+      <div class="carouselCaption" *ngIf="showCaption" (click)="callback()">
+        <div class="caption">{{medium.caption}}</div>
+        <div class="action-button"  *ngIf="interactive">
+            <mat-icon>{{ buttonIcon }}</mat-icon>
+            <div class="label">{{ buttonText }}</div>
+        </div>
+      </div>
+    </ngx-item>
+
+    <button NgxCarouselPrev class='leftRs'>&lt;</button>
+    <button NgxCarouselNext class='rightRs'>&gt;</button>
+</ngx-carousel>
+
+<!--<div class="action-button" (click)="callback()" *ngIf="interactive">-->
+    <!--<mat-icon>{{ buttonIcon }}</mat-icon>-->
+    <!--<div class="label">{{ buttonText }}</div>-->
+<!--</div>-->

@@ -1,0 +1,23 @@
+<div class="parent" [ngStyle]="{'top': popcss[0], 'left': popcss[1], 'width': popcss[2]}">
+  <div class="icon" [style.backgroundColor]="color">
+    <mat-icon [svgIcon]="'feedback-svg'"></mat-icon>
+  </div>
+  <div class="content">
+    <div class="header">
+      <div class="title">
+        <div class="text">{{ question.title }}</div>
+      </div>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="close()">
+        <mat-icon [svgIcon]="'close-dark-svg'"></mat-icon>
+      </button>
+    </div>
+    <div class="answers">
+      <div class="row" *ngFor="let row of question.answerRows">
+        <div class="answer" *ngFor="let answer of row" (click)="respond(answer)">
+          <div class="text">{{ answer.title }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

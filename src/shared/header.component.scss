@@ -1,0 +1,23 @@
+.logo {
+  margin-left: 20px;
+  position: relative;
+  top: 30px;
+  height: 95px;
+}
+
+.logo.wcc {
+  margin-left: 25px;
+  top: 10px;
+  height: 135px;
+}
+
+w2g-weather,
+w2g-time {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+w2g-time {
+  margin-right: 70px;
+}

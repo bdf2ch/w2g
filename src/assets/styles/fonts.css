@@ -1,0 +1,48 @@
+/* fallback */
+@font-face {
+  font-family: 'Segoe UI';
+  src: url('../fonts/segoe-ui.ttf');
+}
+
+@font-face {
+  font-family: 'Segoe UI Light';
+  src: url('../fonts/segoe-ui-light.ttf');
+}
+
+@font-face {
+  font-family: 'Akzidenz Grotesk';
+  src: url('../fonts/akzidenz-grotesk-regular.otf');
+}
+
+@font-face {
+  font-family: 'Akzidenz Grotesk Light';
+  src: url('../fonts/akzidenz-grotesk-light.ttf');
+}
+
+@font-face {
+  font-family: 'New Baskerville';
+  src: url('../fonts/new-baskerville-roman.otf');
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/material-icons.woff2') format('woff2');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+  -webkit-font-smoothing: antialiased;
+}

@@ -1,0 +1,81 @@
+<div class="eventsPopup" [ngStyle]="{'top': EventCss[0], 'left': EventCss[1], 'width': EventCss[2], 'height':EventCss[3]}" [ngClass]="{'disabled': disabled_tf}">
+  <div class="table_heading" >
+    <span *ngIf="!showingInfo">Events</span>
+    <span (click)="windowFun()">
+      <span *ngIf="!disabled_tf">
+        <mat-icon [svgIcon]="'down-arrow-svg'" style="float: right; color: #fff;" *ngIf="!eventWindow"></mat-icon>
+        <mat-icon [svgIcon]="'up-arrow-svg'" style="float: right; color: #fff;" *ngIf="eventWindow"></mat-icon>
+      </span>
+      <span *ngIf="disabled_tf">
+        <mat-icon [svgIcon]="'down-arrow-svg'" style="float: right; color: #fff;" *ngIf="eventWindow"></mat-icon>
+        <mat-icon [svgIcon]="'up-arrow-svg'" style="float: right; color: #fff;" *ngIf="!eventWindow"></mat-icon>
+      </span>
+    </span>
+
+    <span *ngIf="showingInfo">
+      {{Einfo.metadata.displayName}}
+          <span (click)="closeEinfo()"><i class="material-icons" style="float: right;font-size: 36px;position: relative;">arrow_back</i></span>
+    </span>
+  </div>
+
+  <div class="Noeventsdiv" [style.color]="themeColor.lightHex" *ngIf="noevents">
+    No events found
+  </div>
+
+  <div style="overflow: auto; max-height: 395px;" *ngIf="!showingInfo">
+    <div *ngFor="let events of eventsToday" style="width: 100%;">
+      <div class="event_date">{{events.date}}</div>
+      <div class="event_metadata" *ngFor="let i of events.val" style="min-height: 40px" (click)="getevent(i._id,true)">
+        <div class="evenstInfoLeft">{{i.startDate | date:'HH:mm'}} - {{i.endDate | date:'HH:mm'}}</div>
+        <div class="evenstInforight">
+          <div>{{i.displayName}}</div>
+          <div class="event_venue">{{i.venue}}</div>
+          <div class="event_category" *ngIf="i.categories">{{i.categories}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table_content" *ngIf="showingInfo">
+    <div class="Einfo_1 EinfoDiv"><img src="{{Einfo.metadata.imageUrl}}"></div>
+    <div class="Einfo_2 EinfoDiv">
+      <div>Event Details:</div>
+      <div>{{Einfo.venue}}</div>
+      <div>{{Einfo._startDate}} {{Einfo.startDate | date:'HH:mm'}} - {{Einfo.endDate | date:'HH:mm'}}</div>
+      <div> Entry Price: {{Einfo.fee}}</div>
+     <div style="margin-top: 20px;"></div>
+      <div *ngIf="Einfo.metadata.emailAddress">E: {{Einfo.metadata.emailAddress}}</div>
+      <div *ngIf="Einfo.metadata.phone">P: {{Einfo.metadata.phone}}</div>
+      <!--<div>{{Einfo.metadata.imageUrl}}</div>-->
+    </div>
+    <div class="css_line">
+    </div>
+    <div class="Einfo_3 EinfoDiv">
+      <div [innerHTML]="Einfo.metadata.description"></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="navbar" [ngClass]="{'sidebar': hasSidebar}" [style.backgroundColor]="themeColor.hex" *ngIf="showMenu">
+  <div class="menu" [ngClass]="{'disabled': disabled_tf}">
+    <button mat-icon-button [ngClass]="button.className ? 'menu-button ' + button.className : 'menu-button'" [routerLink]="button.url" queryParamsHandling="merge" *ngFor="let button of menuButtons">
+      <mat-icon [svgIcon]="isActive(button) ? button.activeIcon : button.icon"></mat-icon>
+      <div class="label" [ngClass]="{'active': isActive(button)}">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+    </button>
+  </div>
+  <!--<div class="close-button-column">
+    <div class="close-button-row">
+      <button mat-icon-button class="close-button" (click)="closeMenu()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+  </div>-->
+</div>
+
+
+

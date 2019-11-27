@@ -1,0 +1,12 @@
+<ul id="info">
+	<li>
+		<h3>{{ dateTime | momentPipe: 'HH:mm' }}</h3>
+	</li>
+	<li *ngIf="showDate">
+		<h3>{{ dateTime | momentPipe: 'LL'}}</h3>
+	</li>
+	<li *ngIf="temperature">
+		<div>{{dateTime | momentPipe: 'ddd'}}<br /><strong>{{ temperature | number: '1.0-0' }}&#176;c</strong></div>
+		<img src="../../assets/images/weather.png">
+	</li>
+</ul>

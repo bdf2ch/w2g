@@ -1,0 +1,405 @@
+$black: #030303;
+$charcoal: #2e2e2e;
+$minegrey: #383838;
+$dovegrey: #6a6a6a;
+$gold: #c79316;
+
+
+.detailsPopup {
+  width: 88%;
+  background-color: #555;
+  top: 180px;
+  position: absolute;
+  font-size: 20px;
+  border-radius: 16px;
+  left: 35px;
+  max-height: 370px;
+  z-index: 1;
+  min-height: 300px;
+
+  .table_heading {
+    width: auto;
+    margin: 0 auto;
+    background-color: #2e2e2e;
+    padding: 16px;
+    font-size: 24px;
+    color: white;
+    border-radius: 16px 16px 0 0;
+
+
+  }
+
+  .table_content {
+    display: flex;
+    position: absolute;
+    top: 61px;
+    height: calc(100% - 61px);
+    width: 100%;
+    left: 0;
+    color: #fff;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .EinfoDiv {
+    display: inline-block;
+    padding: 20px;
+  }
+
+  .Einfo_1 .image-container {
+    max-height: 258px;
+    overflow: hidden;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+  }
+
+  .Einfo_1 img{
+    width: 100%;
+    height: auto;
+  }
+  .Einfo_1 {
+    flex: 4;
+  }
+  .Einfo_1.extended {
+    flex: 6;
+  }
+  .Einfo_2 {
+    flex: 4;
+    font-size: 12px;
+    line-height: 16px;
+    margin: 0;
+    padding: 20px 5px 20px 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: pre-wrap;
+    word-break: break-all;
+    display: flex;
+    flex-direction: column;
+
+    /deep/ > *:empty {
+      margin: 0 !important;
+    }
+
+    .subheader {
+      margin-bottom: 10px;
+    }
+
+    /deep/ br {
+      height: 0;
+      display: block;
+      content: " ";
+      margin: 3px 0;
+    }
+  }
+
+  .Einfo_3{
+    background-color: rgba(0, 0, 0, 0.2);
+    position: relative;
+    flex: 6;
+    padding: 0 0 20px 0;
+    font-size: 16px;
+    overflow: auto;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    > .content {
+      padding-top: 20px;
+    }
+
+    /deep/ .header {
+      background-color: #555;
+      height: 30px;
+      max-height: 30px;
+      line-height: 30px;
+      padding: 0 20px;
+    }
+
+    /deep/ .subcontent {
+      margin: 8px 0 16px;
+
+      /deep/ p,
+      /deep/ span {
+        margin: 0 !important;
+      }
+    }
+
+    > div {
+      flex: 1;
+
+      /deep/ > * {
+        padding: 0 20px;
+      }
+
+      /deep/ > *:empty {
+        margin: 0 !important;
+      }
+
+      /deep/ > span:first-child,
+      /deep/ > p:first-child {
+        margin-top: 0;
+      }
+
+      /deep/ > *:last-child {
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  .Einfo_3:only-child {
+    height: 100%;
+    max-height: 100%;
+  }
+
+  .css_line {
+    border: solid 0.5px;
+    height: 160px;
+    position: relative;
+    top: 30px;
+  }
+}
+
+
+
+.info {
+  position: relative;
+  //top: 180px;
+  //width: 88%;
+  height: 490px;
+  //left: 65px;
+  background-color: #555;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  .table_heading {
+    width: auto;
+    margin: 0 auto;
+    background-color: #2e2e2e;
+    padding: 16px;
+    font-size: 24px;
+    color: white;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .header {
+    display: flex;
+    height: 70px;
+    background-color: $black;
+    color: #fff;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 70px;
+    padding-left: 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    button {
+      height: 70px;
+      line-height: 70px;
+      width: 100px;
+      text-align: center;
+      font-weight: 300;
+
+      mat-icon {
+        font-size: 50px;
+      }
+    }
+  }
+
+  .tourimage {
+    padding: 10px 10px;
+    overflow: auto;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 0px;
+    width: 320px;
+  }
+
+  .content {
+    padding: 10px 20px;
+    overflow: auto;
+    position: absolute;
+    top: 70px;
+    bottom: 0;
+    left: 320px;
+    right: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 28px;
+
+    .name {
+      color: $gold;
+    }
+
+    .text {
+      color: #fff;
+      margin-top: 5px;
+      background-color: transparent !important;
+
+      /deep/ * {
+        background-color: transparent !important;
+        color: #fff !important;
+      }
+    }
+
+    /deep/ .fr-inner {
+      font-size: 15px;
+      line-height: 18px;
+    }
+  }
+}
+
+.tabs {
+  position: absolute;
+  bottom: 175px;
+  height: 55px;
+  background-color: $minegrey;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  transition: bottom 0.3s;
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+    max-width: 33%;
+  }
+
+  .tab.active {
+    background-color: $dovegrey;
+  }
+
+  .tab.disabled {
+    display: none;
+    color: rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+}
+
+.tabs.collapsed {
+  bottom: 0;
+}
+
+.timeline {
+  position: absolute;
+  bottom: 0;
+  background-color: $dovegrey;
+  height: 175px;
+  width: 100%;
+  transition: height 0.3s;
+  overflow: hidden;
+
+  w2g-timeline {
+    background-color: $dovegrey;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.table_content {
+  display: flex;
+  position: absolute;
+  top: 61px;
+  height: calc(100% - 61px);
+  width: 100%;
+  left: 0;
+  color: #fff;
+  border-radius: 0 0 16px 16px;
+}
+
+.Einfo_1 .image-container {
+  max-height: 258px;
+  overflow: hidden;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.Einfo_1 img{
+  width: 100%;
+  height: auto;
+}
+.Einfo_1 {
+  flex: 4;
+}
+.Einfo_1.extended {
+  flex: 6;
+}
+
+.Einfo_3{
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+  flex: 6;
+  padding: 0 0 20px 0;
+  font-size: 16px;
+  overflow: auto;
+  max-height: 300px;
+  overflow-y: auto;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  > .content {
+    padding-top: 20px;
+  }
+
+  /deep/ .header {
+    background-color: #555;
+    height: 30px;
+    max-height: 30px;
+    line-height: 30px;
+    padding: 0 20px;
+  }
+
+  /deep/ .subcontent {
+    margin: 8px 0 16px;
+
+    /deep/ p,
+    /deep/ span {
+      margin: 0 !important;
+    }
+  }
+
+  > div {
+    flex: 1;
+
+    /deep/ > * {
+      padding: 0 20px;
+    }
+
+    /deep/ > *:empty {
+      margin: 0 !important;
+    }
+
+    /deep/ > span:first-child,
+    /deep/ > p:first-child {
+      margin-top: 0;
+    }
+
+    /deep/ > *:last-child {
+      padding-bottom: 20px;
+    }
+  }
+}
+
+.timeline.collapsed {
+  height: 0;
+}

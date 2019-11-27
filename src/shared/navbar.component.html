@@ -1,0 +1,68 @@
+<div class="menu" [ngClass]="{'sidebar': isSidebar, 'disabled': disabled_tf}">
+  <ng-container *ngFor="let button of menuButtons">
+    <button mat-icon-button [ngClass]="button.className ? 'menu-button ' + button.className : 'menu-button'" [routerLink]="button.url" queryParamsHandling="merge" *ngIf="!button.comingSoon">
+      <mat-icon [svgIcon]="isActive(button) ? button.activeIcon : button.icon"></mat-icon>
+      <div class="label" [style.color]="button.activeColor" *ngIf="isActive(button)">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+      <div class="label" *ngIf="!isActive(button)">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+    </button>
+    <button mat-icon-button [ngClass]="button.className ? 'menu-button ' + button.className : 'menu-button'" (click)="activateComingSoon(button)" *ngIf="button.comingSoon">
+      <mat-icon [svgIcon]="isActive(button) ? button.activeIcon : button.icon"></mat-icon>
+      <div class="label" [style.color]="button.activeColor" *ngIf="isActive(button)">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+      <div class="label" *ngIf="!isActive(button)">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+    </button>
+  </ng-container>
+</div>
+
+<div class="global" [ngClass]="{'sidebar': isSidebar, 'full-size': isFullSize, 'disabled': disabled_tf}">
+  <div style="text-align: center;">
+    <ng-container *ngFor="let button of globalButtons">
+      <button mat-icon-button [ngClass]="button.className ? 'global-button ' + button.className : 'global-button'" [ngClass]="{'in-disabled': disabled_tf}" [style.background]="button.primaryColor || '#000'" [routerLink]="button.url" queryParamsHandling="merge" *ngIf="!button.comingSoon">
+        <mat-icon *ngIf="button.icon.endsWith('-svg')" [svgIcon]="button.icon"></mat-icon>
+        <mat-icon *ngIf="!button.icon.endsWith('-svg')">{{ button.icon }}</mat-icon>
+        <div class="label" *ngIf="button.label">{{ button.label }}</div>
+      </button>
+      <button mat-icon-button [ngClass]="button.className ? 'global-button ' + button.className : 'global-button'" [ngClass]="{'in-disabled': disabled_tf}" [style.background]="button.primaryColor || '#000'" (click)="activateComingSoon(button)" *ngIf="button.comingSoon">
+        <mat-icon *ngIf="button.icon.endsWith('-svg')" [svgIcon]="button.icon"></mat-icon>
+        <mat-icon *ngIf="!button.icon.endsWith('-svg')">{{ button.icon }}</mat-icon>
+        <div class="label" *ngIf="button.label">{{ button.label }}</div>
+      </button>
+    </ng-container>
+  </div>
+  <div style="text-align: center;" *ngIf="disabledbtn && disabledbtn.id == 'easy-access'">
+    <button mat-icon-button class="global-button easy-access" [ngClass]="{'in-disabled': disabled_tf, 'svg-icon': disabledbtn.iconUrl && disabledbtn.iconUrl.endsWith('.svg')}" [style.background]="disabledbtn.backgroundColor || '#000'" (click)="onAccessibleMode($event)" *ngIf="!disabledbtn.html">
+      <img *ngIf="disabledbtn.iconUrl" [src]="disabledbtn.iconUrl"/>
+      <div class="label" *ngIf="disabledbtn.label">{{ disabledbtn.label }}</div>
+    </button>
+
+    <button mat-button class="global-button easy-access" [ngClass]="{'in-disabled': disabled_tf}" [style.background]="disabledbtn.backgroundColor || '#000'" (click)="onAccessibleMode($event)" [innerHTML]="disabledbtn.html" *ngIf="disabledbtn.html"></button>
+  </div>
+  <div *ngIf="disabledbtn && disabledbtn.id == 'disabled'">
+    <button mat-icon-button [class]="disabledbtn.className + ' AccessibleMode'" [ngClass]="{'on': disabled_tf}" [style.background]="AMbackground" (click)="onAccessibleMode($event)">
+      <div class="accessibleLabel">Accessible Mode</div>
+      <mat-radio-group [value]="checkChecked">
+        <mat-radio-button [value]="true" [ngClass]="{'shown': disabled_tf}"></mat-radio-button>
+        <mat-radio-button [value]="false" [ngClass]="{'shown': !disabled_tf}"></mat-radio-button>
+      </mat-radio-group>
+    </button>
+  </div>
+</div>
+
+<div class="accessible-popup" [ngClass]="{'visible': !hideAccessibleLabel}">
+  Accessible Mode {{ disabled_tf ? 'Enabled' : 'Disabled' }}
+</div>

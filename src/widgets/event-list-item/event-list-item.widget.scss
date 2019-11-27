@@ -1,0 +1,99 @@
+/*
+:host {
+  display: flex;
+  flex-direction: row;
+  background-color: forestgreen;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+  height: 100px;
+
+  > div:first-child{
+    display: flex;
+
+    .meetingTime{
+      //background-color: #aa5a16;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+
+      > div{
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 1.2em;
+        //background-color: turquoise;
+        width: 180px;
+        text-align: center;
+      }
+
+      > div:first-child{
+        //background-color: darkviolet;
+      }
+
+      > div:last-child{
+        //background-color: darkorange;
+      }
+    }
+
+    .meetingInfo{
+      //background-color: darkseagreen;
+      width: calc(100% - 180px);
+      display: flex;
+      flex-direction: column;
+      padding: 0 25px;
+
+      > div:first-child{
+        //background-color: aqua;
+        color: #fff;
+        font-size: 2em;
+      }
+
+      > div:last-child{
+        //background-color: limegreen;
+        color: limegreen;
+        margin-top: auto;
+        font-size: 4.5em;
+      }
+    }
+  }
+
+  .divider{
+    box-sizing: border-box;
+    height: 2px;
+    width: 70%;
+    background-color: #fff;
+    margin: 30px auto;
+  }
+}
+*/
+
+.event-list-item {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding: 10px;
+  color: white;
+  background-color: forestgreen;
+  cursor: pointer;
+
+  .meeting-time {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1em;
+  }
+
+  .meeting-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 20px;
+    line-height: 1em;
+  }
+
+  &.with-divider {
+    border-bottom: 1px solid white;
+  }
+}

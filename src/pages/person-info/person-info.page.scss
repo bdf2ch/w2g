@@ -1,0 +1,191 @@
+.people-info {
+  height: 100%;
+
+  .details{
+    display: flex;
+    padding: 2%;
+    box-sizing: border-box;
+    height: 18%;
+
+    > a{
+      margin-top: auto;
+      margin-bottom: auto;
+
+      mat-icon{
+        color: #fff;
+        width: 60px;
+        height: 60px;
+        font-size: 60px;
+      }
+    }
+
+    > div{
+      color: #fff;
+      width: 100%;
+      display: flex;
+      margin-top: auto;
+      margin-bottom: auto;
+
+      img{
+        //width: 145px;
+        //height: 180px;
+        width: 80px;
+        height: 100px;
+        display: block;
+        font-size: 0;
+        margin-right: 5%;
+        margin-left: 3%;
+      }
+
+      > div{
+        height: 100px;
+        width: calc(92% - 80px);
+        display: flex;
+        flex-direction: column;
+
+        > div:first-child{
+          font-size: 22px;
+          height: 22px;
+          line-height: 22px;
+          font-family: "Arial Narrow Bold", serif;
+          font-weight: bold;
+        }
+
+        > div:not(:first-child){
+          font-size: 16px;
+          font-family: "Arial Narrow", serif;
+          height: 16px;
+        }
+
+        > div:not(:first-child):not(:last-child){
+          margin-bottom: 5%;
+        }
+
+        > div:nth-child(2){
+          margin-top: auto;
+          //background-color: greenyellow !important;
+        }
+
+        > div:nth-child(2n){
+          //background-color: orange;
+        }
+
+        > div:last-child{
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .info{
+    height: 82%;
+    padding: 3%;
+    box-sizing: border-box;
+    overflow: auto;
+    word-wrap: break-spaces;
+    color: #fff;
+
+    > div:first-child{
+      background: linear-gradient(to right, #617893, #345274);
+      display: flex;
+      flex-direction: column;
+      padding: 2% 0;
+      margin-bottom: 20px;
+
+      .expertiseLabel{
+        font-size: 22px;
+        font-style: italic;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom: 20px;
+      }
+
+      .expertise{
+        font-size: 18px;
+      }
+    }
+
+    > div:last-child{
+
+      .header{
+        height: 80px;
+        display: flex;
+        box-sizing: border-box;
+
+        > span{
+          margin: auto;
+          font-size: 60px;
+          color: #fff;
+        }
+      }
+
+      .officeHours{
+        background-color: orange;
+        color: #fff;
+        margin-top: 40px;
+
+        > div:not(:last-child){
+          margin-bottom: 20px;
+        }
+
+        > div{
+          display: flex;
+
+          .day{
+            background-color: forestgreen;
+            //margin-right: 50px;
+            //margin-left: auto;
+            font-size: 50px;
+            width: 310px;
+            margin-left: auto;
+          }
+
+          .time{
+            display: flex;
+            background-color: royalblue;
+            //margin-right: auto;
+            //margin-left: 50px;
+            font-size: 50px;
+            margin-right: auto;
+
+            span{
+              //margin-right: 40px;
+              //margin-left: 40px;
+              background-color: red;
+              width: 100px;
+              text-align: center;
+            }
+
+            > div:first-child{
+              background-color: darkviolet;
+              width: 250px;
+              text-align: center;
+            }
+
+            > div:last-child{
+              background-color: green;
+              width: 250px;
+              text-align: center;
+            }
+          }
+
+          .closed{
+            margin-right: auto;
+
+            > div{
+              background-color: darkblue;
+              width: 600px;
+              text-align: center;
+              font-size: 50px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
+

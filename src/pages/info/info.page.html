@@ -1,0 +1,151 @@
+<div *ngIf="showInfo" class="infocont" [ngStyle]="{'top': EventCss[0], 'left': EventCss[1], 'width': EventCss[2], 'height':EventCss[3]}" [ngClass]="{'disabled': disabled_tf}">
+  <div *ngIf="!isFeedback && !isNews">
+    <div class="info" *ngIf="!activeInfo && infos">
+      <div class="header" *ngIf="!disabled_tf">
+        <span>{{infoname}}</span>
+      </div>
+      <div class="content">
+        <mat-list class="info-list">
+          <mat-list-item class="info-item" (click)="setActiveInfo(infoItem)" *ngFor="let infoItem of infos">
+            {{ infoItem.heading }}
+          </mat-list-item>
+        </mat-list>
+      </div>
+      <div class="headerbottom" *ngIf="disabled_tf">
+        <span>{{infoname}}</span>
+      </div>
+
+    </div>
+    <div class="info" *ngIf="activeInfo">
+      <div class="header">
+        <div class="heading">
+          <div class="heading-text">{{ activeInfo.heading }}</div>
+        </div>
+        <span class="spacer"></span>
+        <button mat-icon-button (click)="unsetActiveInfo()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <div class="content">
+        <div class="image" *ngIf="activeInfo.info_images && activeInfo.info_images.length > 0">
+          <img [src]="activeInfo.info_images[0].url"/>
+        </div>
+        <div class="name">{{ activeInfo.summary }}</div>
+        <div class="text" [innerHTML]="activeInfo.body"></div>
+        <div class="urls">
+          <div class="url" *ngFor="let link of activeInfo.info_urls">
+            <div class="url-caption">
+              {{ link.caption }}
+            </div>
+            <div class="url-value">
+              {{ link.url.replace('tel: ', '').replace('tel:', '').replace('mailto: ', '').replace('mailto:', '') }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info" *ngIf="isFeedback">
+    <div class="header">
+      <span>Feedback - Tap on faces and buttons to complete</span>
+    </div>
+    <div class="mat-spinner-container" *ngIf="feedbackLoading">
+      <mat-spinner class="orange"></mat-spinner>
+    </div>
+    <div class="content" style="text-align: center;" *ngIf="showFeedbackContent">
+      <div>
+        <div class="radioButtnDiv">
+          <div class="feedbackTitle">{{feedbackQuestions[0]}}</div>
+          <div>
+            <div class="radioBtnclass face"  (click)="feedback(1,'Good', 0)" ><img [src]="btnstyle[0]"></div>
+            <div class="radioBtnclass face"  (click)="feedback(1,'Average',1)" ><img [src]="btnstyle[1]"></div>
+            <div class="radioBtnclass face" (click)="feedback(1,'Bad',2)" ><img [src]="btnstyle[2]"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feedbackTitle">{{feedbackQuestions[1]}}</div>
+
+        <div class="radioButtnDiv">
+          <div>
+            <div class="radioBtnclass" (click)="feedback(2,'Yes',3)" [ngStyle]="{'background': btnstyle[3] || '#f9f9f9'}">
+              <div class="label">Yes</div>
+            </div>
+            <div class="radioBtnclass"  (click)="feedback(2,'No',4)" [ngStyle]="{'background': btnstyle[4] || '#f9f9f9'}">
+              <div class="label">No</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feedbackTitle">{{feedbackQuestions[2]}}</div>
+        <div class="radioButtnDiv">
+          <mat-radio-group>
+            <div class="row">
+              <div class="radioBtnclass"  (click)="feedback(3,feedbackPages[0],5)" [ngStyle]="{'background': btnstyle[5] || '#f9f9f9'}">
+                <div class="label">{{feedbackPages[0]}}</div>
+              </div>
+              <div class="radioBtnclass"  (click)="feedback(3,feedbackPages[1],6)" [ngStyle]="{'background': btnstyle[6] || '#f9f9f9'}">
+                <div class="label">{{feedbackPages[1]}}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="radioBtnclass"  (click)="feedback(3,feedbackPages[2],7)" [ngStyle]="{'background': btnstyle[7] || '#f9f9f9'}">
+                <div class="label">{{feedbackPages[2]}}</div>
+              </div>
+              <div class="radioBtnclass"  (click)="feedback(3,feedbackPages[3],8)" [ngStyle]="{'background': btnstyle[8] || '#f9f9f9'}">
+                <div class="label">{{feedbackPages[3]}}</div>
+              </div>
+            </div>
+          </mat-radio-group>
+        </div>
+      </div>
+      <div>
+        <div class="feedbackTitle">{{feedbackQuestions[3]}}</div>
+        <div class="radioButtnDiv">
+          <div>
+            <div class="radioBtnclass face"  (click)="feedback(4,'Likely',9)" ><img [src]="btnstyle[9]"></div>
+            <div class="radioBtnclass face" (click)="feedback(4,'Moderately Likely',10)" ><img [src]="btnstyle[10]"></div>
+            <div class="radioBtnclass face"  (click)="feedback(4,'Unlikely',11)" ><img [src]="btnstyle[11]"></div>
+          </div>
+        </div>
+
+      </div>
+      <div class="submitbtndiv">
+        <button class="submitbtn" (click)="submitfun()" [ngClass]="{'disabled': !isValid()}" #tooltip="matTooltip" [matTooltip]="'Please answer all questions to submit'" [matTooltipShowDelay]="tooltipShowDelay" [matTooltipHideDelay]="3000">Submit</button>
+      </div>
+
+      <div class="feedback-footer" [innerHtml]="feedbackFooter" *ngIf="feedbackFooter && feedbackFooter.length > 0"></div>
+    </div>
+    <div class="content" style="text-align: center;" *ngIf="!showFeedbackContent">
+      <div class="feedback-message" [innerHTML]="feedbackMessage"></div>
+    </div>
+  </div>
+
+  <div class="info" *ngIf="isNews">
+    <div class="header" *ngIf="!disabled_tf">
+      <span>{{infoname}}</span>
+    </div>
+    <div class="headerbottom" *ngIf="disabled_tf">
+      <span>{{infoname}}</span>
+    </div>
+    <div class="content">
+      <w2g-notifications [notifications]="news" [extended]="true" [extendToggle]="false" *ngIf="isNews && news.length > 0"></w2g-notifications>
+    </div>
+  </div>
+</div>
+
+<div class="navbar" [ngClass]="{'sidebar': hasSidebar}" [style.backgroundColor]="themeColor.hex" *ngIf="showMenu">
+  <div class="menu" [ngClass]="{'disabled': disabled_tf}">
+    <button mat-icon-button [ngClass]="button.className ? 'menu-button ' + button.className : 'menu-button'"
+            [routerLink]="button.url" queryParamsHandling="merge" *ngFor="let button of menuButtons" [disabled]="button.disabled">
+      <mat-icon [svgIcon]="isActive(button) ? button.activeIcon : button.icon"></mat-icon>
+      <div class="label" [ngClass]="{'active': isActive(button)}">
+        <div class="label-text-container">
+          <div class="label-text">{{ button.label }}</div>
+        </div>
+      </div>
+    </button>
+  </div>
+</div>

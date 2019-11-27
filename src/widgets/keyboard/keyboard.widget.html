@@ -1,0 +1,20 @@
+<div class="keyboard">
+  <div  class="key_row">
+    <div *ngFor="let x of keys_array[0]" class="keyboard_btn" (click)="key_input(x)" >{{x}}
+    </div>
+    <div  class="keyboard_btn del_btn" (click)="key_input('DEL')"  style="font-size: 31px !important;">
+      <i class="material-icons">backspace</i>
+    </div>
+  </div>
+  <div class="key_row">
+    <div *ngFor="let x of keys_array[1]" class="keyboard_btn" (click)="key_input(x)" >{{x}}
+    </div>
+  </div>
+  <div class="key_row">
+    <span *ngFor="let x of keys_array[2]" class="keyboard_btn" (click)="key_input(x)" >{{x}}</span>
+  </div>
+  <div class="key_row">
+    <span *ngFor="let x of keys_array[3]" class="keyboard_btn" (click)="key_input(x)">{{x}}</span>
+    <span class="keyboard_btn" (click)="key_input('space')" style="width: 100px;!important;">SPACE</span>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<main>
+	<aside>
+		<div class="heading">
+			<img class='back' src="/assets/images/arrow_left.png" (click)="back()">
+			<span><img src="/assets/images/icon/icon_6.png">
+				{{meetFull ? meetFull.name : 'Meeting Rooms'}}
+
+			</span>
+		</div>
+
+		<ul class="sub_menu" *ngIf="!meetFull">
+			<li *ngFor="let category of categories" (click)="select(category)">
+				<span [textContent]="category.settings.rooms[0].name"></span>
+			</li>
+		</ul>
+
+		<ul class="search_list" *ngIf="meetFull">
+			<li *ngFor="let child of meetFull.event">
+				<div [textContent]="child.subject"></div>
+				<div [textContent]="'all day'" *ngIf="child.all_day"></div> <!-- move to localized list -->
+				<div [textContent]="child.start_time | timeFromToPipe: child.end_time"></div>
+			</li>
+		</ul>
+	</aside>
+
+	<article>
+		<div class="main_info">
+			<w2g-map class="map"></w2g-map>
+			<div class="info_name">
+				Floorplans<br>
+				to appear here<br>
+				<br>
+				Will also have a<br>
+				‘You are Here’<br>
+				Marker
+			</div>
+
+			<ul class="right_menu green">
+				<li class="active"><span>G</span></li>
+				<li><span>1st</span></li>
+				<li><span>2nd</span></li>
+				<li><span>3rd</span></li>
+				<li class="active" routerLink="/"><span><img src="/assets/images/icon/home.png" /></span></li>
+			</ul>
+		</div>
+
+	</article>
+
+</main>

@@ -1,0 +1,33 @@
+<div class="notifications-list">
+  <div class="notification" [ngClass]="{ 'truncated': truncated, 'custom': notification.source == 'w2g-broker-notifications' }" (click)=redirectCallback(notification) *ngFor="let notification of renderedNotifications; let $index = index;">
+    <div class="icon" [style.background]="notification.primaryColor || '#000'">
+      <mat-icon [svgIcon]="notification.icon" class="svg-icon" *ngIf="notification.icon.endsWith('-svg')"></mat-icon>
+      <mat-icon *ngIf="!notification.icon.endsWith('-svg')">{{ notification.icon }}</mat-icon>
+    </div>
+    <div class="content" [ngClass]="'color-' + notification.primaryColor.slice(1)">
+      <div class="title-container">
+        <div class="title" [style.color]="notification.primaryColor || '#fff'">{{ notification.title }}</div>
+      </div>
+      <div class="message" [innerHTML]="truncated && notification.truncatedMessage ? notification.truncatedMessage : notification.message" *ngIf="!marquee"></div>
+      <marquee class="message" [innerHTML]="truncated && notification.truncatedMessage ? notification.truncatedMessage : notification.message" *ngIf="marquee"></marquee>
+      <div class="footer" *ngIf="!truncated">
+        <div class="index">{{ $index + 1 }} of {{ inputNotifications.length }}</div>
+        <div class="spacer"></div>
+        <div class="date">{{ notification.date | timeAgo}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!truncated && extendToggle">
+  <div class="extend-toggle" (click)="toggleExtended()"  [ngStyle]="{'position': showmoreCss[0], 'top': showmoreCss[1]}">
+    <ng-container *ngIf="extended">
+      <mat-icon [svgIcon]="'up-arrow-dark-svg'"></mat-icon>
+      <div class="label">Show Less</div>
+    </ng-container>
+    <ng-container *ngIf="!extended">
+      <mat-icon [svgIcon]="'down-arrow-dark-svg'"></mat-icon>
+      <div class="label">Show More</div>
+    </ng-container>
+  </div>
+</ng-container>

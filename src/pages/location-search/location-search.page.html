@@ -1,0 +1,51 @@
+<main>
+	<aside>
+		<div class="heading">
+			<img class='back' src="/assets/images/arrow_left.png" (click)="back()">
+			<span><img src="/assets/images/icon/icon_2.png"> Location Search</span>
+		</div>
+
+		<input placeholder="Search for a location or department" class="heading_input" [(ngModel)]="input" (ngModelChange)="inputChange()"/>
+
+		<ul class="sub_menu" *ngIf="searchOrChildren.length == 0 && !input">
+			<li *ngFor="let category of categories" (click)="select(category)">
+				<span [textContent]="category.name"></span>
+			</li>
+		</ul>
+
+		<ul class="search_list" *ngIf="searchOrChildren.length > 0 || input">
+			<li *ngFor="let child of searchOrChildren">
+				<div [textContent]="child.name"></div>
+				<div [textContent]="child.category"></div>
+			</li>
+		</ul>
+	</aside>
+
+	<article>
+		<div class="main_info">
+			<w2g-map class="map"></w2g-map>
+			<div class="info_name">
+				Floorplans<br>
+				to appear here<br>
+				<br>
+				Will also have a<br>
+				‘You are Here’<br>
+				Marker
+			</div>
+
+			<ul class="right_menu green">
+				<li class="active"><span>G</span></li>
+				<li><span>1st</span></li>
+				<li><span>2nd</span></li>
+				<li><span>3rd</span></li>
+				<li class="active" routerLink="/"><span><img src="/assets/images/icon/home.png" /></span></li>
+			</ul>
+
+			<div class="keyboard">
+				<w2g-keyboard></w2g-keyboard>
+			</div>
+		</div>
+
+	</article>
+
+</main>

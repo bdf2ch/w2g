@@ -1,0 +1,11 @@
+<div class="Floorplan">
+  <div class="floorleveldiv map-buttons">
+    <button mat-button class="map-button">
+      <div class="floorbutton" (click)="goOutside()">OUT</div>
+    </button>
+    <button mat-button class="map-button" *ngFor="let i of floorlist">
+      <div class="floorbutton" (click)="floorbuttonFun(i)" *ngIf="i.id !== currentFloor.id">{{i.name}}</div>
+      <div class="floorbutton active" [style.backgroundColor]="themeColor.hex" (click)="floorbuttonFun(i)" *ngIf="i.id === currentFloor.id">{{i.name}}</div>
+    </button>
+  </div>
+</div>

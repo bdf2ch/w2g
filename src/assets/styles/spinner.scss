@@ -1,0 +1,123 @@
+$green: #008b66;
+$cyan: #006b8b;
+$purple: #501174;
+$crimson: #cf0049;
+$maroon: #87002c;
+$gold: #c79316;
+$orange: #f48120;
+$tahiti: #f28a07;
+$dovegrey: #6a6a6a;
+$smoky: #605270;
+
+.mat-spinner-container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  mat-spinner {
+    width: 100px;
+    height: 100px;
+  }
+
+  .spinner-status-message {
+    color: #fff;
+    font-size: 30px;
+    margin-top: 20px;
+    line-height: 40px;
+    text-align: center;
+  }
+}
+
+mat-spinner.white {
+  svg {
+    circle {
+      stroke: #fff;
+    }
+  }
+}
+
+mat-spinner.green {
+  svg {
+    circle {
+      stroke: $green;
+    }
+  }
+}
+
+mat-spinner.cyan {
+  svg {
+    circle {
+      stroke: $cyan;
+    }
+  }
+}
+
+mat-spinner.purple {
+  svg {
+    circle {
+      stroke: $purple;
+    }
+  }
+}
+
+mat-spinner.gold {
+  svg {
+    circle {
+      stroke: $gold;
+    }
+  }
+}
+
+mat-spinner.tahiti {
+  svg {
+    cirle: $tahiti;
+  }
+}
+
+mat-spinner.orange {
+  svg {
+    circle {
+      stroke: $orange;
+    }
+  }
+}
+
+mat-spinner.dovegrey {
+  svg {
+    circle {
+      stroke: $dovegrey;
+    }
+  }
+}
+
+mat-spinner.maroon {
+  svg {
+    circle {
+      stroke: $maroon;
+    }
+  }
+}
+
+mat-spinner.crimson {
+  svg {
+    circle {
+      stroke: $crimson;
+    }
+  }
+}
+
+mat-spinner.smoky {
+  svg {
+    circle {
+      stroke: $smoky;
+    }
+  }
+}

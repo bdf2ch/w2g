@@ -1,0 +1,127 @@
+$grey: #333;
+$stoneGrey: #e4e4e4;
+
+:host {
+  .parent {
+    background-color: white;
+    position: absolute;
+    top: 400px;
+    left: 65px;
+    height: 300px;
+    z-index: 2;
+    border-radius: 10px;
+    width: 88%;
+    display: flex;
+
+    .icon {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      width: 65px;
+      height: 100%;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+
+      mat-icon {
+        height: 200px;
+        width: 100%;
+        line-height: 200px;
+        text-align: center;
+        font-size: 52px;
+        color: #fff;
+      }
+
+      mat-icon.svg-icon {
+        margin-left: -4px;
+      }
+    }
+
+    .content {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+
+      .header {
+        display: flex;
+        flex-direction: row;
+        padding-left: 10px;
+        height: 95px;
+        background-color: $stoneGrey;
+        border-top-right-radius: 10px;
+
+        .title {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .text {
+            font-size: 26px;
+            font-weight: 300;
+            color: $grey;
+            max-height: 100%;
+            overflow: hidden;
+            line-height: 48px;
+          }
+        }
+
+        button {
+          height: 95px;
+          width: 70px;
+          cursor: pointer;
+        }
+      }
+
+      .answers {
+        display: flex;
+        flex: 1;
+        margin: 10px;
+        justify-content: space-between;
+        flex-direction: column;
+
+        .row {
+          display: flex;
+          flex: 1;
+          justify-content: space-between;
+          flex-direction: row;
+          align-items: center;
+
+          .answer {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            min-width: 49%;
+            height: 60px;
+            line-height: 60px;
+            font-size: 26px;
+            color: $grey;
+            cursor: pointer;
+
+            .text {
+              line-height: 30px;
+              max-height: 60px;
+              overflow: hidden;
+            }
+          }
+
+          .answer:first-child {
+            border-right: 1px solid #b1b1b1;
+          }
+        }
+
+        .row:first-child {
+          border-bottom: 1px solid #b1b1b1;
+        }
+      }
+    }
+  }
+}
+
+:host.home-page {
+  .parent {
+    top: auto !important;
+    bottom: 250px !important;
+    left: 4% !important;
+    width: 92% !important;
+    height: 370px !important;
+  }
+}

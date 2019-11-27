@@ -1,0 +1,30 @@
+:host.full-screen {
+  bottom: 25px;
+}
+
+:host.full-screen.has-footer {
+  bottom: 145px;
+}
+
+w2g-carousel,
+w2g-notifications {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+w2g-carousel {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+w2g-notifications {
+  z-index: 2;
+  padding: 45px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+}

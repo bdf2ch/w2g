@@ -1,0 +1,50 @@
+<ng-container *ngIf="ready">
+  <div class="content" [ngClass]="{ 'has-list': defaultFloor || floor || parentFloor }" *ngIf="hasDestination">
+    <div class="route" [style.backgroundColor]="themeColor" (click)="setDestination()">
+      <mat-icon>directions</mat-icon>
+    </div>
+    <div class="name">
+      <div class="text" [innerHTML]="location.name"></div>
+    </div>
+  </div>
+
+  <ng-container *ngIf="!hasDestination">
+    <div class="content" [ngClass]="{ 'has-list': defaultFloor || floor || parentFloor }" *ngIf="hasDepartures">
+      <div class="route" [style.backgroundColor]="themeColor" (click)="getDepartures()">
+        <mat-icon>access_time</mat-icon>
+      </div>
+      <div class="name">
+        <div class="text" [innerHTML]="location.name"></div>
+      </div>
+    </div>
+
+    <div class="content" [ngClass]="{ 'has-list': defaultFloor || floor || parentFloor }" *ngIf="!hasDepartures">
+      <div class="route bordered" [style.backgroundColor]="themeColor" *ngIf="time">
+        <div class="time">{{ time }}</div>
+      </div>
+      <div class="route bordered" [style.backgroundColor]="themeColor" (click)="getDirections()" *ngIf="!time">
+        <mat-icon>directions</mat-icon>
+      </div>
+      <div class="share" [style.backgroundColor]="themeColor" (click)="share()" *ngIf="qrCode">
+        <mat-icon>share</mat-icon>
+      </div>
+      <div class="name">
+        <div class="text" [innerHTML]="location.name"></div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div class="list" *ngIf="hasList">
+    <div class="list-item large has-icon" *ngIf="availabilityString">
+      <div class="list-item-text">{{ availabilityString }}</div>
+      <div class="list-item-icon" *ngIf="availabilityColor">
+        <circle-progress [percent]="100" [radius]="100" [outerStrokeWidth]="18" [outerStrokeColor]="'#666'" [showInnerStroke]="false" [animation]="false" [title]="''" [subtitle]="''" [clockwise]="true"></circle-progress>
+        <circle-progress [percent]="((1.0 - location.ratio) * 100) | number:'1.0-0'" [radius]="100" [outerStrokeWidth]="18" [outerStrokeColor]="availabilityColor" [showInnerStroke]="false" [animation]="false" [title]="''" [subtitle]="''" [clockwise]="true"></circle-progress>
+      </div>
+    </div>
+    <div class="list-item" (click)="goInside()" *ngIf="defaultFloor && !inBuilding">Go Inside</div>
+    <div class="list-item" (click)="goOutside()" *ngIf="(floor || parentFloor) && inBuilding">Go Outside</div>
+    <!--<div class="list-item" (click)="getDepartures()" *ngIf="hasDepartures">Departures</div>-->
+    <!--<div class="list-item" (click)="setDestination()" *ngIf="hasDestination">Plan Journey</div>-->
+  </div>
+</ng-container>

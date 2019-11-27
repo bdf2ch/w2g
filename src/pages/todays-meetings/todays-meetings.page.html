@@ -1,0 +1,82 @@
+<main>
+	<aside>
+		<div class="heading nowrap-elepsis" [ngClass]="{'heading_info_green' : selectedCategory}">
+			<img src="/assets/images/arrow_left.png" (click)="back()">
+			<span><img src="/assets/images/icon/icon_5.png" *ngIf="!selectedCategory">
+				{{(selectedCategory ? selectedCategory.displayName : 'Today’s Meetings')  | slice:0:20}}
+			</span>
+		</div>
+
+    <div class="meeting-list" *ngIf="!selectedCategory">
+      <w2g-event-list-item
+        *ngFor="let meeting of categories"
+        [meeting]="meeting"
+        (click)="select(meeting)"
+        showDivider="true">
+      </w2g-event-list-item>
+    </div>
+
+
+    <!--
+		<ul class="search_list" *ngIf="!selectedCategory">
+      <w2g-event-list-item
+        *ngFor="let meeting of categories"
+        [meeting]="meeting"
+        showDivider="true">
+      </w2g-event-list-item>
+			<li *ngFor="let meeting of categories" (click)="select(meeting)" style="cursor: pointer">
+				<div class='nowrap-elepsis' [textContent]="meeting.displayName"></div>
+				<div [textContent]="'all day'" *ngIf="meeting.allDay"></div>
+				<div [textContent]="meeting.startDate | timeFromToPipe: meeting.endDate"></div>
+			</li>
+		</ul>
+    -->
+
+    <div class="text_info bg" *ngIf="selectedCategory">
+      <div [textContent]="selectedCategory.displayName"></div>
+
+      <div [textContent]="selectedCategory.venue">
+        <!---<em>
+          Kit & Equipment
+        </em>-->
+        30 Seats, White board, Lectern & AV equipment<br>
+        to support teaching
+      </div>
+
+    </div>
+
+
+		<div class="image_info_2" *ngIf="selectedCategory">
+			<img width="100%" [src]="selectedCategory.imageUrl || '/assets/images/room.png' " />
+			<sub class="l_side">Online</sub>
+			<sub class="r_side" [textContent]="selectedCategory.startDate | timeFromToPipe: selectedCategory.endDate"></sub>
+		</div>
+
+
+
+	</aside>
+
+	<article>
+		<div class="main_info">
+			<w2g-map class="map"></w2g-map>
+			<div class="info_name">
+				Floorplans<br>
+				to appear here<br>
+				<br>
+				Will also have a<br>
+				‘You are Here’<br>
+				Marker
+			</div>
+
+			<ul class="right_menu green">
+				<li class="active"><span>G</span></li>
+				<li><span>1st</span></li>
+				<li><span>2nd</span></li>
+				<li><span>3rd</span></li>
+				<li class="active" routerLink="/"><span><img src="/assets/images/icon/home.png" /></span></li>
+			</ul>
+		</div>
+
+	</article>
+
+</main>
